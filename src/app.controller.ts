@@ -28,12 +28,12 @@ export class AppController {
     };
   }
   
-  @Patch('/:{userId}')
+  @Patch('/:userId')
   update(@Param() req: Request) {
     return req.body ;
   }
 
-  @Get('/:{userId}')
+  @Get('/:userId')
   getUserOnly(@Param() params: {userId: number}){
     return params;
   }
