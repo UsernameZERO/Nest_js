@@ -8,6 +8,10 @@ export class AppController {
   getUser() {
     return 'waiting for me 😉';
   }
+  @Post()
+  store() {
+    return 'going to home ';
+  }
   @Get('/user')
   getUsers() {
     return {
