@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Req } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Req } from "@nestjs/common";
 import { Request } from "express";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
@@ -26,8 +26,8 @@ export class UserController {
   }
 
   @Get('/:userId')
-  getUserOnly(@Param() params: {userId: number}){
-    return this.userService.getUser(params);
+  getUserOnly(@Param('userId', ParseIntPipe) userId: number){
+    return this.userService.getUser(userId);
   }
 
   @Delete('/:userId')

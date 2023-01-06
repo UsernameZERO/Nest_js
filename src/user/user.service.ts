@@ -24,8 +24,8 @@ export class UserService {
     }
   }
 
-  getUser(params: {userId: number}){
-    return params;
+  getUser(userId: number){
+    return {userId};
   }
 
   delete(params: {userId: number}){
