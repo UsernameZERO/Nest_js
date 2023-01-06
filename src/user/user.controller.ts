@@ -21,8 +21,8 @@ export class UserController {
   }
   
   @Patch('/:userId')
-  update(@Body() updateUserDto: UpdateUserDto, @Param() params: {userId: number} ) {
-    return this.userService.update(updateUserDto, params) ;
+  update(@Body() updateUserDto: UpdateUserDto, @Param('userId', ParseIntPipe) userId: number ) {
+    return this.userService.update(updateUserDto, userId) ;
   }
 
   @Get('/:userId')
@@ -31,7 +31,7 @@ export class UserController {
   }
 
   @Delete('/:userId')
-  deleteUser(@Param() params: {userId: number}){
-    return this.userService.delete(params);
+  deleteUser(@Param('userId', ParseIntPipe) userId: number){
+    return this.userService.delete(userId);
   }
 }
