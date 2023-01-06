@@ -1,8 +1,13 @@
 import { Controller, Delete, Get, Param, Patch, Post, Req } from "@nestjs/common";
 import { Request } from "express";
+import { UserService } from "./user.service";
 
-@Controller('/user')
+@Controller('user')
 export class UserController {
+  private userService;
+  constructor(){
+    this.userService = new UserService;
+  }
   @Post()
   post(@Req() req: Request) {
     return req.body ;
@@ -10,10 +15,11 @@ export class UserController {
   
   @Get()
   getUsers() {
-    return {
-      name : "Zero 👀",
-      email: "usernameZero@github.com"
-    };
+    return this.userService.get();
+    // return {
+    //   name : "Zero 👀",
+    //   email: "usernameZero@github.com"
+    // };
   }
   
   @Patch('/:userId')
