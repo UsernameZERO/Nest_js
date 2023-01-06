@@ -9,31 +9,27 @@ export class UserController {
     this.userService = new UserService;
   }
   @Post()
-  post(@Req() req: Request) {
-    return req.body ;
+  store(@Req() req: Request) {
+    return this.userService.create(req);
   }
   
   @Get()
   getUsers() {
     return this.userService.get();
-    // return {
-    //   name : "Zero 👀",
-    //   email: "usernameZero@github.com"
-    // };
   }
   
   @Patch('/:userId')
-  update(@Param() req: Request) {
-    return req.body ;
+  update(@Req() req: Request, @Param() params: {userId: number} ) {
+    return this.userService.update(req, params) ;
   }
 
   @Get('/:userId')
   getUserOnly(@Param() params: {userId: number}){
-    return params;
+    return this.userService.getUser(params);
   }
 
   @Delete('/:userId')
   deleteUser(@Param() params: {userId: number}){
-    return params;
+    return this.userService.delete(params);
   }
 }
